@@ -21,8 +21,6 @@ const initialState: IngredientState = {
   potassium: 0,
   carbohydrate: 0,
   protein: 0,
-  recipes: [] as string[],
-  userId: "",
 };
 
 const getTextByIngredientType = (ingredientType: FoodType) => {
@@ -72,6 +70,7 @@ const getTextByIngredientType = (ingredientType: FoodType) => {
 };
 
 import Select from "react-select";
+import { trpc } from "../utils/trpc";
 
 const reducer = (state: IngredientState, aciton: IngredientAction) => {
   switch (aciton.type) {
@@ -97,10 +96,6 @@ const reducer = (state: IngredientState, aciton: IngredientAction) => {
       return { ...state, type: aciton.payload as FoodType };
     case IngredientActionType.SET_QUANTITY:
       return { ...state, quantity: aciton.payload as number };
-    case IngredientActionType.SET_RECIPES:
-      return { ...state, recipes: aciton.payload as string[] };
-    case IngredientActionType.SET_USER:
-      return { ...state, user: aciton.payload as string };
     default:
       return state;
   }
@@ -109,6 +104,7 @@ const reducer = (state: IngredientState, aciton: IngredientAction) => {
 const NewIngredient = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [menuIsActive, setMenuIsActive] = useState(false);
+  const { mutate, error } = trpc.useMutation(["ingredient.new-ingredient"]);
 
   useEffect(() => {}, [state.emoji, menuIsActive]);
 
@@ -454,7 +450,26 @@ const NewIngredient = () => {
                 <div className="divider"></div>
 
                 <div className="card-actions w-full">
-                  <button className="btn btn-primary btn-block">
+                  <button
+                    className="btn btn-primary btn-block"
+                    onClick={() => {
+                      console.table(state);
+                      mutate({
+                        carbohydrate: state.carbohydrate,
+                        cholesterol: state.cholesterol,
+                        emoji: state.emoji as string,
+                        fat: state.fat,
+                        kcal: state.kcals,
+                        name: state.name as string,
+                        potassium: state.potassium,
+                        protein: state.protein,
+                        quantity: parseInt(state.quantity.toString()),
+                        sodium: state.sodium,
+                        type: state.type,
+                        description: "",
+                      });
+                    }}
+                  >
                     Create Ingredient
                   </button>
                 </div>

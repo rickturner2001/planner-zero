@@ -14,15 +14,13 @@ export const createFoodSchema = z.object({
     "MEAT",
     "POULTRY",
   ]),
-  kcals: z.number().optional(),
-  fat: z.number().optional(),
-  cholesterol: z.number().optional(),
-  sodium: z.number().optional(),
-  potassium: z.number().optional(),
-  carbohydrate: z.number().optional(),
-  Protein: z.number().optional(),
-  recipes: z.string().array(),
-  userId: z.string(),
+  kcal: z.number(),
+  fat: z.number(),
+  cholesterol: z.number(),
+  sodium: z.number(),
+  potassium: z.number(),
+  carbohydrate: z.number(),
+  protein: z.number(),
 });
 
 export const getUser = z.object({

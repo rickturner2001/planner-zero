@@ -73,13 +73,13 @@ model Food{
     description  String?
     quantity     Float
     type         String?
-    kcal         Float?
+    kcal         Float? 
     fat          Float?
     cholesterol  Float?
     sodium       Float?
     potassium    Float?
     carbohydrate Float?
-    Protein      Float?
+    protein      Float?
     recipes      Recipe[]
     user         User @relation(fields: [userId], references: [id])
     userId       String

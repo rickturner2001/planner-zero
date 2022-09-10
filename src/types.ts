@@ -21,7 +21,6 @@ export enum IngredientActionType {
   SET_CARBOHYDRATE,
   SET_PROTEIN,
   SET_RECIPES,
-  SET_USER,
 }
 
 export type IngredientState = {
@@ -36,11 +35,9 @@ export type IngredientState = {
   potassium: number;
   carbohydrate: number;
   protein: number;
-  recipes: string[];
-  userId: string;
 };
 
 export interface IngredientAction {
   type: IngredientActionType;
-  payload: String | number | FoodType | string[];
+  payload: String | number | FoodType;
 }
