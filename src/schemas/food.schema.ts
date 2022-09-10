@@ -23,8 +23,10 @@ export const createFoodSchema = z.object({
   protein: z.number(),
 });
 
-export const getUser = z.object({
-  email: z.string(),
+export const deleteIngredient = z.object({
+  id: z.string(),
 });
+
+export type deleteIngredient = z.TypeOf<typeof deleteIngredient>;
 
 export type createFoodInput = z.TypeOf<typeof createFoodSchema>;

@@ -1,11 +1,11 @@
 import { createRouter } from "./context";
-import { createFoodSchema } from "../../schemas/food.schema";
+import { createFoodSchema, deleteIngredient } from "../../schemas/food.schema";
 
 export const ingredientRouter = createRouter()
   .mutation("new-ingredient", {
     input: createFoodSchema,
     async resolve({ input, ctx }) {
-      const ingredient = ctx.prisma.food.create({
+      const ingredient = await ctx.prisma.food.create({
         data: {
           ...input,
           user: {
@@ -27,5 +27,17 @@ export const ingredientRouter = createRouter()
           },
         },
       });
+    },
+  })
+  .mutation("delete-ingredient", {
+    input: deleteIngredient,
+
+    async resolve({ ctx, input }) {
+      const ingredient = await ctx.prisma.food.delete({
+        where: {
+          id: input.id,
+        },
+      });
+      return ingredient;
     },
   });

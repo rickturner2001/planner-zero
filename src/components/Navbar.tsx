@@ -56,8 +56,14 @@ const Navbar = () => {
         />
         <NavButton
           svg={<ArchiveBoxIcon className="w-5 h-5" />}
-          text="My Collection"
+          text="My Recipes"
           selected={false}
+        />
+        <NavButton
+          svg={<ArchiveBoxIcon className="w-5 h-5" />}
+          text="My Ingredients"
+          selected={false}
+          href={"/ingredients"}
         />
         <NavButton
           svg={<PlusIcon className="w-5 h-5" />}

@@ -108,8 +108,17 @@ const NewIngredient = () => {
 
   useEffect(() => {}, [state.emoji, menuIsActive]);
 
-  const IngredientCard = () => {
-    return <></>;
+  const resetState = () => {
+    dispatch({ type: IngredientActionType.SET_NAME, payload: "" });
+    dispatch({ type: IngredientActionType.SET_CARBOHYDRATE, payload: 0 });
+    dispatch({ type: IngredientActionType.SET_CHOLESTEROL, payload: 0 });
+    dispatch({ type: IngredientActionType.SET_EMOJI, payload: "" });
+    dispatch({ type: IngredientActionType.SET_FAT, payload: 0 });
+    dispatch({ type: IngredientActionType.SET_POTASSIUM, payload: 0 });
+    dispatch({ type: IngredientActionType.SET_PROTEIN, payload: 0 });
+    dispatch({ type: IngredientActionType.SET_QUANTITY, payload: 0 });
+    dispatch({ type: IngredientActionType.SET_TYPE, payload: FoodType.BEAN });
+    dispatch({ type: IngredientActionType.SET_SODIUM, payload: 0 });
   };
 
   return (
@@ -129,6 +138,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.name as string}
                         type={"text"}
                         className={"input input-bordered"}
                         onChange={(e) =>
@@ -146,6 +156,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.quantity}
                         type={"number"}
                         className={"input input-bordered"}
                         onChange={(e) =>
@@ -168,6 +179,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.kcals}
                         type={"number"}
                         onChange={(e) => {
                           dispatch({
@@ -187,6 +199,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.protein}
                         type={"number"}
                         className="input input-bordered"
                         onChange={(e) => {
@@ -206,6 +219,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.fat}
                         type={"number"}
                         className="input input-bordered"
                         onChange={(e) => {
@@ -227,6 +241,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.carbohydrate}
                         type={"number"}
                         className="input input-bordered"
                         onChange={(e) => {
@@ -246,6 +261,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.sodium}
                         type={"number"}
                         className="input input-bordered"
                         onChange={(e) => {
@@ -265,6 +281,7 @@ const NewIngredient = () => {
                         </span>
                       </label>
                       <input
+                        value={state.potassium}
                         type={"number"}
                         className="input input-bordered"
                         onChange={(e) => {
@@ -340,6 +357,7 @@ const NewIngredient = () => {
                       </span>
                     </label>
                     <input
+                      value={state.cholesterol}
                       type={"number"}
                       className="input input-bordered"
                       onChange={(e) => {
@@ -468,6 +486,7 @@ const NewIngredient = () => {
                         type: state.type,
                         description: "",
                       });
+                      resetState();
                     }}
                   >
                     Create Ingredient

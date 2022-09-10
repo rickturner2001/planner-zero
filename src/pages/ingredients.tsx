@@ -1,21 +1,39 @@
 import { Food } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import LoginRequired from "../components/LoginRequired";
 import PageContainer from "../components/PageContainer";
 import { FoodType } from "../types";
 import { trpc } from "../utils/trpc";
 import { getTextByIngredientType } from "./new-ingredient";
+import { MinusCircleIcon } from "@heroicons/react/24/solid";
+import { useEffect } from "react";
 
 const Ingredients = () => {
+  const utils = trpc.useContext();
   const { data: session } = useSession();
-  const rounter = useRouter();
+  const { mutate: deletion } = trpc.useMutation([
+    "ingredient.delete-ingredient",
+  ]);
 
   const { data: ingredients } = trpc.useQuery(["ingredient.get-ingredients"]);
 
   const IngredientCard = ({ ingredient }: { ingredient: Food }) => {
     return (
-      <div className="card w-96  bg-base-200 select-none shadow cursor-pointer hover:scale-105 transition-all">
+      <div className="card w-96  bg-base-200 select-none shadow cursor-pointer hover:scale-105 transition-all relative">
+        <button
+          className="btn btn-sm btn-circle btn-error absolute top-2 right-2"
+          onClick={() => {
+            deletion(
+              { id: ingredient.id },
+              {
+                onSuccess: () =>
+                  utils.invalidateQueries(["ingredient.get-ingredients"]),
+              }
+            );
+          }}
+        >
+          <MinusCircleIcon className="w-7 h-7" />
+        </button>
         <figure>
           <p className="text-7xl p-8 select-none">{ingredient.emoji || "❓"}</p>
         </figure>
