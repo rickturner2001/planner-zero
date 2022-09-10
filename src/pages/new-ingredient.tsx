@@ -23,7 +23,7 @@ const initialState: IngredientState = {
   protein: 0,
 };
 
-const getTextByIngredientType = (ingredientType: FoodType) => {
+export const getTextByIngredientType = (ingredientType: FoodType) => {
   switch (ingredientType) {
     case FoodType.BEAN:
       return (
@@ -114,9 +114,9 @@ const NewIngredient = () => {
 
   return (
     <PageContainer title="Ingredient Creation">
-      <div className="flex flex-col justify-center items-center  h-[90vh] mt-10  bg-gradient-to-r from-emerald-400 to-emerald-600 rounded">
+      <div className="flex flex-col justify-center items-center  h-[90vh] mt-5  bg-gradient-to-r from-emerald-400 to-emerald-600 rounded">
         <div className=" h-[75%] w-[75%] rounded p-6 ">
-          <div className="flex justify-around items-start">
+          <div className="flex justify-around items-start gap-20">
             <div className=" flex flex-col">
               <div className="flex flex-col justify-around gap-5">
                 {/* NAME */}

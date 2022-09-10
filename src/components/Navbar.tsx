@@ -16,13 +16,16 @@ const Navbar = () => {
     svg,
     text,
     selected,
+    href,
   }: {
     svg: JSX.Element;
     text: string;
     selected: boolean;
+    href?: string;
   }) => {
     return (
-      <button
+      <a
+        href={href || "#"}
         className={`flex gap-2 btn w-full justify-start items-center ${
           !selected
             ? "bg-transparent stroke-slate-500 text-slate-500"
@@ -31,7 +34,7 @@ const Navbar = () => {
       >
         {svg}
         <p>{text}</p>
-      </button>
+      </a>
     );
   };
 
@@ -60,6 +63,7 @@ const Navbar = () => {
           svg={<PlusIcon className="w-5 h-5" />}
           text="New Ingredient"
           selected={false}
+          href="/new-ingredient"
         />
         <NavButton
           svg={<PlusIcon className="w-5 h-5" />}
