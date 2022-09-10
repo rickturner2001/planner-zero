@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.EmojiPickerReact {
+  position: relative;
+  height: 80% !important;
+  margin: 0 !important;
+  /* width: 26rem !important; */
+  /* margi */
+}
