@@ -24,8 +24,8 @@ export enum IngredientActionType {
 }
 
 export type IngredientState = {
-  name: String;
-  emoji: String;
+  name: string;
+  emoji: string;
   quantity: number;
   type: FoodType;
   kcals: number;
@@ -39,5 +39,5 @@ export type IngredientState = {
 
 export interface IngredientAction {
   type: IngredientActionType;
-  payload: String | number | FoodType;
+  payload: string | number | FoodType;
 }

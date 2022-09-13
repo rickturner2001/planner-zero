@@ -106,7 +106,9 @@ const NewIngredient = () => {
   const [menuIsActive, setMenuIsActive] = useState(false);
   const { mutate, error } = trpc.useMutation(["ingredient.new-ingredient"]);
 
-  useEffect(() => {}, [state.emoji, menuIsActive]);
+  // useEffect(() => {
+
+  // }, [state.emoji, menuIsActive]);
 
   const resetState = () => {
     dispatch({ type: IngredientActionType.SET_NAME, payload: "" });
