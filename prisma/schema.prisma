@@ -88,8 +88,7 @@ model Food{
 model Recipe{
     id          String @id @default(cuid())
     name        String
-    emoji       String
-    description String
+    description String?
     food        Food[]
     steps       RecipeSteps[]
     user        User @relation(fields: [userId], references: [id])

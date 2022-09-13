@@ -75,6 +75,7 @@ const Navbar = () => {
           svg={<PlusIcon className="w-5 h-5" />}
           text="New Recipe"
           selected={false}
+          href={"/new-recipe"}
         />
         <NavButton
           svg={<Cog6ToothIcon className="w-5 h-5" />}
